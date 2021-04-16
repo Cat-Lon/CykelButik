@@ -7,5 +7,10 @@ namespace cykelProject
     public class CykelButik
     {
        public static Dictionary<string, Cykel> cykelDict = new Dictionary<string, Cykel>();
+
+        public void RemoveBike(string bike)
+        {
+            cykelDict.Remove(bike);
+        }
     }
 }
