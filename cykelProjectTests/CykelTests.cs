@@ -14,36 +14,63 @@ namespace cykelProject.Tests
         {
             CykelButik.cykelDict.Clear();
         }
-
-        [Test()]
-        public void TestFuncTest()
-        {
-            Assert.Fail();
-        }
         [Test()]
         public void NewBikeTest()
         {
-            string mærkeNummer = "l4x12";
-            Cykel cykel = new Cykel();
-            Assert.That(CykelButik.cykelDict[mærkeNummer] != null);
+            string mærkeNummer = ":)";
+            Cykel cykel = new Cykel(mærkeNummer,"",0,Cykel.Mærke.wow);
+            Assert.That(CykelButik.cykelDict[mærkeNummer], Is.EqualTo(cykel));
         }
         [Test()]
         public void GetFarveTest()
         {
             string mærkeNummer = "l4x12";
             string farve = "grøn";
-            Cykel cykel = new Cykel();//farve med mere her
-            Assert.That(CykelButik.cykelDict[mærkeNummer].GetFarve() = farve);
+            Cykel cykel = new Cykel(mærkeNummer, farve, 200, Cykel.Mærke.Cool);//farve med mere her
+            Assert.That(CykelButik.cykelDict[mærkeNummer].GetFarve(), Is.EqualTo(farve));
         }
         [Test()]
         public void EditFarveTest()
         {
             string mærkeNummer = "l4x12";
             string farve = "testFarve";
-            Cykel cykel = new Cykel();
+            Cykel cykel = new Cykel(mærkeNummer,"blå",160,Cykel.Mærke.AndetNavn);
             CykelButik.cykelDict[mærkeNummer].EditFarve(farve);
-            Assert.That(CykelButik.cykelDict[mærkeNummer].GetFarve = farve);
+            Assert.That(CykelButik.cykelDict[mærkeNummer].GetFarve, Is.EqualTo(farve));
         }
-
+        [Test()]
+        public void GetPrisTest()
+        {
+            string mærkeNummer = "l4x12";
+            int pris = 169;
+            Cykel cykel = new Cykel(mærkeNummer,"",pris,Cykel.Mærke.Cool);
+            Assert.That(CykelButik.cykelDict[mærkeNummer].GetPris(), Is.EqualTo(pris));
+        }
+        [Test()]
+        public void EditPrisTest()
+        {
+            string mærkeNummer = "l4x12";
+            int pris = 172;
+            Cykel cykel = new Cykel(mærkeNummer,"",201,Cykel.Mærke.AndetNavn);//anden pris her
+            CykelButik.cykelDict[mærkeNummer].EditPris(pris);
+            Assert.That(CykelButik.cykelDict[mærkeNummer].GetPris(), Is.EqualTo(pris));
+        }
+        [Test()]
+        public void GetMærkeTest()
+        {
+            string mærkeNummer = "l4x12";
+            Cykel.Mærke mærke = Cykel.Mærke.Cool;
+            Cykel cykel = new Cykel(mærkeNummer,"",0,mærke);
+            Assert.That(CykelButik.cykelDict[mærkeNummer].GetMærke(), Is.EqualTo(mærke));
+        }
+        [Test()]
+        public void EditMærkeTest()
+        {
+            string mærkeNummer = "l4x12";
+            Cykel.Mærke mærke = Cykel.Mærke.AndetNavn;
+            Cykel cykel = new Cykel(mærkeNummer,"",0,Cykel.Mærke.Cool);//andet mærke her
+            CykelButik.cykelDict[mærkeNummer].EditMærke(mærke);
+            Assert.That(CykelButik.cykelDict[mærkeNummer].GetMærke(), Is.EqualTo(mærke));
+        }
     }
 }
